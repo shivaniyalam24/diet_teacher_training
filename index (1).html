@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Teacher Training Platform</title>
+</head>
+<body>
+    <h2>AI-Powered Adaptive Teacher Training</h2>
+    <button onclick="loadData()">Load Teacher Data</button>
+    <ul id="result"></ul>
+
+    <script>
+        function loadData() {
+            fetch("http://127.0.0.1:5000/teachers")
+                .then(res => res.json())
+                .then(data => {
+                    let list = document.getElementById("result");
+                    list.innerHTML = "";
+                    data.forEach(t => {
+                        list.innerHTML += `<li>
+                            ${t.name} | Score: ${t.score}
+                            | Level: ${t.recommended_level}
+                        </li>`;
+                    });
+                });
+        }
+    </script>
+</body>
+</html>
